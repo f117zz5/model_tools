@@ -14,7 +14,7 @@ class ang(object):
         self.params['ode'] = dict()
         # the substituted diff_eqns_list
         self.eq['ode_subs'] = dict()
-        self.params['ode'] = dict()
+        self.params['ode_subs'] = dict()
 
     def find_param_to_subs(self, params_to_search, equation):
         #eqns = set(eqns_list.keys())
@@ -42,7 +42,7 @@ class ang(object):
         return expr_real
 
 
-    def substitute_concept2(self, eqation, eqns_list):
+    def substitute_concept2(self, eq_key, eqns_list):
         """
         Takes a single equation and substitutes all the variables that are
         found in eqns_list.
@@ -51,7 +51,7 @@ class ang(object):
         eqns_list - dictionary
         """
         eqns = set(eqns_list.keys())
-        curr_eq = eqation
+        curr_eq = self.eq['ode'][eq_key]
         something_found=True
         while something_found:
             a1 = list(curr_eq.free_symbols)
@@ -68,7 +68,8 @@ class ang(object):
                 for curr_el in to_subs:
                     curr_eq = curr_eq.subs(a1_dict[curr_el], eqns_list[curr_el])
 
-        return curr_eq
+        self.eq['ode_subs'][eq_key] = curr_eq
+        self.params['ode_subs'][eq_key] = curr_eq.free_symbols
 
 
     def replace_singe_var(self, equation, old_var, new_var):
@@ -133,8 +134,8 @@ class ang(object):
 
     def gen_ode_subs(self):
 
-        for current_key in self.eq['ode']:
-            self.eq['ode_subs'][current_key] = self.substitute_concept2(self.eq['ode'][current_key], self.eq['algebraic'])
+        for current_key in self.eq['ode'].keys():
+            self.substitute_concept2(current_key, self.eq['algebraic'])
             
 
     def sens_ext_sys(eq_sys, x_vec, par_vec):
