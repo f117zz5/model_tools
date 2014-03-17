@@ -45,7 +45,11 @@ class ang(object):
     def substitute_concept2(self, eq_key, eqns_list):
         """
         Takes a single equation and substitutes all the variables that are
-        found in eqns_list.
+        found in eqns_list. The equation is addressed by the key from the ode
+        dictionary.
+        
+        eq_key - key from the ode dictionary.
+        eqns_list - dictionary with equations to be substituted.
         
         eqation - dictionary
         eqns_list - dictionary
@@ -97,6 +101,11 @@ class ang(object):
         self.eq_get(Name, Equation, Zone = 'ode')
         
     def eq_get(self, Name, Zone = 'algebraic'):
+        """
+        Returns an equation by its key from the dictionary.
+        Default zone is algebraic.
+        """
+        
         if self.eq[Zone].has_key(Name):
             return self.eq[Zone][Name]
         else:
@@ -210,4 +219,3 @@ if __name__ == '__main__':
     #a1.eq
     #a1.params    
     print 'Hello!'
-
