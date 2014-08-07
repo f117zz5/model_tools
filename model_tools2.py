@@ -3,6 +3,14 @@ from sympy import  *
 
 class ang(object):
     def __init__(self):
+        # there are two types pf containers: eq and params. 
+        # The first one, eq, contains the equations. The second one, params, 
+        # contains the parameters.
+        #
+        # For each eq and params there are three areas: 
+        # - algebraic - list of algebraic equations
+        # - ode - list of differential equations
+        # - ode_subs - list of differential equations where the algebraic ones are substituted in
         self.eq = dict()
         self.params = dict()
         # dict for all the equations defined
@@ -120,6 +128,13 @@ class ang(object):
             self.params[Zone].pop(Name, None)
             
     def eq_all_params(self, Zone = 'algebraic'):
+        # This function gets all the params from all the equations
+
+        # TODO: 
+        #   - if Zone = 'ode_subs' or Zone = 'ode', remove the states. Get them from
+        #   keys
+        #   - loop over algebraic, ode & ode_subs. Whats the point of having three
+        #   zones and only one all_params
         all_params = set()
         for current_key in self.eq[Zone].keys():
             all_params = all_params.union(self.params[Zone][current_key])
