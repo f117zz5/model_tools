@@ -25,4 +25,4 @@ a1.gen_ode_subs()
 #a1.substitute_concept2('y_1', a1.eq['algebraic'])
 #a1.substitute_concept2('y_2', a1.eq['algebraic'])
 
-#a1.eq_all_params(Zone = 'ode_subs')
+a1.eq_all_params(Zone = 'ode_subs')

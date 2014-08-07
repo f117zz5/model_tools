@@ -13,16 +13,19 @@ class ang(object):
         # - ode_subs - list of differential equations where the algebraic ones are substituted in
         self.eq = dict()
         self.params = dict()
+        self.all_params = dict()
         # dict for all the equations defined
         self.eq['algebraic'] = dict()
         self.params['algebraic'] = dict()
-        self.all_params = list()
+        self.all_params['algebraic'] = list()
         # dict for the ODE system described by eqns_list
         self.eq['ode'] = dict()
         self.params['ode'] = dict()
+        self.all_params['ode'] = list()
         # the substituted diff_eqns_list
         self.eq['ode_subs'] = dict()
         self.params['ode_subs'] = dict()
+        self.all_params['ode_subs'] = list()
 
     def find_param_to_subs(self, params_to_search, equation):
         #eqns = set(eqns_list.keys())
@@ -141,12 +144,13 @@ class ang(object):
 
         all_params_list = list(all_params)
 
-        # reset eqns_params
-        self.all_params = list()
+        # when choosing between the zones: I should not reset anything 
+        # # reset eqns_params
+        # self.all_params = list()
         for current_el in all_params_list:
-            self.all_params.append(current_el.name)
+            self.all_params[Zone].append(current_el.name)
 
-        self.all_params.sort()
+        self.all_params[Zone].sort()
 
     # It seems the method remove_states has not been finished and right now
     # after months not working on this project I have no idea what it should do...
