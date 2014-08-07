@@ -148,13 +148,15 @@ class ang(object):
 
         self.all_params.sort()
 
-    def remove_states(self, Zone = 'algebraic'):
+    # It seems the method remove_states has not been finished and right now
+    # after months not working on this project I have no idea what it should do...
+    # def remove_states(self, Zone = 'algebraic'):
 
-        # finish me!
-        d1 = set(self.all_params)
-        d2 = list(d1.difference(set(self.eq[Zone].keys())))
-        d2.sort()
-        return d2
+    #     # finish me!
+    #     d1 = set(self.all_params)
+    #     d2 = list(d1.difference(set(self.eq[Zone].keys())))
+    #     d2.sort()
+    #     return d2
 
     def gen_ode_subs(self):
 
