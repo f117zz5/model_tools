@@ -139,18 +139,22 @@ class ang(object):
         #   keys
         #   - loop over algebraic, ode & ode_subs. Whats the point of having three
         #   zones and only one all_params
+
+        # make sure the list is empty before starting
+        self.all_params[Zone] = []
+
         all_params = set()
         for current_key in self.eq[Zone].keys():
             all_params = all_params.union(self.params[Zone][current_key])
 
+        # convert the set to list
         all_params_list = list(all_params)
 
-        # when choosing between the zones: I should not reset anything 
-        # # reset eqns_params
-        # self.all_params = list()
+        # call the name method for each sympy variable and append them to list
         for current_el in all_params_list:
             self.all_params[Zone].append(current_el.name)
 
+        # sort the list of variables names
         self.all_params[Zone].sort()
 
     # It seems the method remove_states has not been finished and right now
