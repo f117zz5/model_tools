@@ -173,7 +173,7 @@ class ang(object):
             self.substitute_concept2(current_key, self.eq['algebraic'])
             
 
-    def sens_ext_sys(eq_sys, x_vec, par_vec):
+    def sens_ext_sys(self, eq_sys, x_vec, par_vec):
         """
         Calculation of the sensitivity equations of a ode system eq_sys. 
         The eq_sys has states x_vec and parameters par_vec.
