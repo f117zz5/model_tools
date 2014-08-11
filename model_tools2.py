@@ -120,6 +120,7 @@ class ang(object):
         if self.eq[Zone].has_key(Name):
             return self.eq[Zone][Name]
         else:
+            # TODO: probably generate an error here?
             return None
 
     def ode_eq_remove(self, Name):
