@@ -30,7 +30,7 @@ a1.eq_all_params(Zone = 'ode_subs')
 x_vec = a1.eq['ode_subs'].keys()
 # fixme: the code below is not working as 'm_1' and 'm_2' are strings, but they should be sympy objects
 # todo: change eq_all_params() to store and the sympy objects
-par_vec = ['m_1', 'm_2']
+par_vec = [a1.all_params_ode_subs['m_1'], a1.all_params_ode_subs['m_2']]
 
 
 ode_sys = []

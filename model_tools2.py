@@ -26,6 +26,7 @@ class ang(object):
         self.eq['ode_subs'] = dict()
         self.params['ode_subs'] = dict()
         self.all_params['ode_subs'] = list()
+        self.all_params_ode_subs = dict()
 
     def find_param_to_subs(self, params_to_search, equation):
         #eqns = set(eqns_list.keys())
@@ -153,6 +154,7 @@ class ang(object):
         # call the name method for each sympy variable and append them to list
         for current_el in all_params_list:
             self.all_params[Zone].append(current_el.name)
+            self.all_params_ode_subs[current_el.name] = current_el
 
         # sort the list of variables names
         self.all_params[Zone].sort()
