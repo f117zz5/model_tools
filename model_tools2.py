@@ -28,14 +28,14 @@ class ang(object):
         self.all_params['ode_subs'] = list()
         self.all_params_ode_subs = dict()
 
-    def find_param_to_subs(self, params_to_search, equation):
-        #eqns = set(eqns_list.keys())
-        b1 = list(equation.free_symbols)
-        curr_list = list()
-        for curr_el in b1:
-            curr_list.append(curr_el.name)
+    # def find_param_to_subs(self, params_to_search, equation):
+    #     #eqns = set(eqns_list.keys())
+    #     b1 = list(equation.free_symbols)
+    #     curr_list = list()
+    #     for curr_el in b1:
+    #         curr_list.append(curr_el.name)
 
-        return params_to_search.intersection(set(curr_list))
+    #     return params_to_search.intersection(set(curr_list))
 
     def convert_func(self, string):
         """
