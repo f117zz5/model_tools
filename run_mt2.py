@@ -36,10 +36,7 @@ x_vec = a1.eq['ode_subs'].keys()
 par_vec = [a1.all_params_ode_subs['m_1'], a1.all_params_ode_subs['m_2']]
 
 
-ode_sys = []
-for key in a1.eq['ode_subs']:
-	ode_sys.append(a1.eq['ode_subs'][key])
-
+ode_sys = a1.sys_dict_to_list(a1.eq['ode_subs'])
 
 sens_sys = a1.sens_ext_sys(ode_sys, x_vec, par_vec)
 print sens_sys

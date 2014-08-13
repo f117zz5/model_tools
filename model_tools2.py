@@ -176,6 +176,13 @@ class ang(object):
         for current_key in self.eq['ode'].keys():
             self.substitute_concept2(current_key, self.eq['algebraic'])
             
+    def sys_dict_to_list(self, sys_dict):
+        # This method gets a system of ODEs definded as a dictionary and converts
+        # it to list container to be used later in sens_ext_sys() for example
+        sys_list = []
+        for key in sys_dict:
+            sys_list.append(sys_dict[key])
+        return sys_list
 
     def sens_ext_sys(self, eq_sys, x_vec, par_vec):
         """
