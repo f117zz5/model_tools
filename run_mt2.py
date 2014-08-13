@@ -40,3 +40,8 @@ ode_sys = a1.sys_dict_to_list(a1.eq['ode_subs'])
 
 sens_sys = a1.sens_ext_sys(ode_sys, x_vec, par_vec)
 print sens_sys
+
+
+sens_sys_list = a1.sys_dict_to_list(sens_sys)
+from sympy import cse, numbered_symbols
+a4=cse(sens_sys_list, symbols=numbered_symbols(prefix='t', start=0))
