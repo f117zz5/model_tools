@@ -180,7 +180,9 @@ class ang(object):
         # This method gets a system of ODEs definded as a dictionary and converts
         # it to list container to be used later in sens_ext_sys() for example
         sys_list = []
-        for key in sys_dict:
+        keys = sys_dict.keys()
+        keys.sort()
+        for key in keys:
             sys_list.append(sys_dict[key])
         return sys_list
 
