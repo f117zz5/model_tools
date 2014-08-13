@@ -26,6 +26,9 @@ a1.eq_all_params(Zone = 'algebraic')
 a1.eq_all_params(Zone = 'ode')
 a1.eq_all_params(Zone = 'ode_subs')
 
+# eample how to use the method replace_singe_var()
+# a1.eq['algebraic']['delta_L1'] = a1.replace_singe_var(a1.eq['algebraic']['delta_L1'], 'x_1', 'x_11')
+
 
 x_vec = a1.eq['ode_subs'].keys()
 # fixme: the code below is not working as 'm_1' and 'm_2' are strings, but they should be sympy objects
@@ -38,4 +41,5 @@ for key in a1.eq['ode_subs']:
 	ode_sys.append(a1.eq['ode_subs'][key])
 
 
-a1.sens_ext_sys(ode_sys, x_vec, par_vec)
+sens_sys = a1.sens_ext_sys(ode_sys, x_vec, par_vec)
+print sens_sys

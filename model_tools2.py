@@ -89,6 +89,8 @@ class ang(object):
 
 
     def replace_singe_var(self, equation, old_var, new_var):
+        # This method replaces a single variable in one equation by a new one.
+        # In other words: it renames a single variable...
         # curr_eq = eqns_list['G_eff']['eq']
         curr_eq = equation
         a1 = list(curr_eq.free_symbols)
