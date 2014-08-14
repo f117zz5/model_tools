@@ -9,13 +9,13 @@ mt = reload(mt)
 
 a1 = mt.ang()
 
-a1.eq_add('delta_L1', 'x_1-L_1')
-a1.eq_add('delta_L2', 'x_2-L_2')
+a1.eq_add('delta_L1', 'x1-L1')
+a1.eq_add('delta_L2', 'x2-L2')
 
-a1.ode_eq_add('dot_x_1', 'y_1')
-a1.ode_eq_add('dot_y_1', '(-b_1 * y_1 - k_1 * delta_L1 + k_2 * (delta_L2 - x_1)) / m_1')
-a1.ode_eq_add('dot_x_2', 'y_2')
-a1.ode_eq_add('dot_y_2', '(-b_2 * y_2 - k_2 * (delta_L2 - x_1)) / m_2')
+a1.ode_eq_add('dot_x1', 'y1')
+a1.ode_eq_add('dot_y1', '(-b1 * y1 - k1 * delta_L1 + k2 * (delta_L2 - x1)) / m1')
+a1.ode_eq_add('dot_x2', 'y2')
+a1.ode_eq_add('dot_y2', '(-b2 * y2 - k2 * (delta_L2 - x1)) / m2')
 
 # substitute the algabrain equations in the ode system to generate the complete ode_subs
 a1.gen_ode_subs()
@@ -33,7 +33,7 @@ a1.eq_all_params(Zone = 'ode_subs')
 x_vec = a1.eq['ode_subs'].keys()
 # fixme: the code below is not working as 'm_1' and 'm_2' are strings, but they should be sympy objects
 # todo: change eq_all_params() to store and the sympy objects
-par_vec = [a1.all_params_ode_subs['m_1'], a1.all_params_ode_subs['m_2']]
+par_vec = [a1.all_params_ode_subs['m1'], a1.all_params_ode_subs['m2']]
 
 
 sens_sys_list = a1.sys_dict_to_list(a1.eq['ode_subs'])
