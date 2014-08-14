@@ -231,6 +231,40 @@ class ang(object):
 
         return eq
 
+    def print_Sys_optim(self, sys_optim, func_name = 'ODE_sys'):
+        # This function prints the ODE system as Python code
+
+        # Number of states
+        ns = len(sys_optim[1])
+
+        print '#----------'
+        print 'def %s(w, t):' % (func_name)
+        print '    # Automatically generated function\n'
+        print '    # The state vector'
+        prtStr='    ('
+        for ii in range(ns):
+            if ii< ns-1:
+                prtStr='%sx%d, ' % (prtStr, ii+1)
+            else:
+                prtStr='%sx%d' % (prtStr, ii+1)
+        prtStr='%s)=w ' % (prtStr)
+
+        print prtStr
+
+        print '\n    # Now the common terms'
+        for t_ii in sys_optim[0]:
+            t_ii_Lhs, t_ii_rhs = t_ii
+            print '    %s=%s' % (t_ii_Lhs, t_ii_rhs)
+        print '\n    # The ODE system'
+        for ii, current_eq in enumerate(sys_optim[1]):
+            if ii==0:
+                print '    dot_x=[%s,' % current_eq
+            elif ii>0 and ii!=len(sys_optim[1])-1:
+                print '    %s,' % current_eq
+            else:
+                print '    %s]' % current_eq
+        print '    '
+        print '    return dot_x'
 
 def main():
     pass

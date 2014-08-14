@@ -46,25 +46,4 @@ sens_sys_list = a1.sys_dict_to_list(sens_sys)
 from sympy import cse, numbered_symbols
 a4=cse(sens_sys_list, symbols=numbered_symbols(prefix='t', start=0))
 
-print '#----------'
-print 'def ODE_sys(w, t):'
-prtStr='  ('
-for ii in range(len(sens_sys_list)):
-    if ii< len(sens_sys_list)-1:
-        prtStr='%sx%d, ' % (prtStr, ii+1)
-    else:
-        prtStr='%sx%d' % (prtStr, ii+1)
-prtStr='%s)=w ' % (prtStr)
-print prtStr
-for t_ii in a4[0]:
-  t_ii_Lhs, t_ii_rhs = t_ii
-  print '  %s=%s' % (t_ii_Lhs, t_ii_rhs)
-for ii, current_eq in enumerate(a4[1]):
-  if ii==0:
-    print '  dot_x=[%s,' % current_eq
-  elif ii>0 and ii!=len(a4[1])-1:
-    print '  %s,' % current_eq
-  else:
-    print '  %s]' % current_eq
-print '  '
-print '  return dot_x'
+a1.print_Sys_optim(a4, func_name = 'r1')
