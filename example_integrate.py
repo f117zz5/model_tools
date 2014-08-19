@@ -8,18 +8,18 @@ def r1(w, t):
     (x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12)=w 
 
     # Now the common terms
-    t0=k2*(-L2 - x1 + x2)
-    t1=-b1*y1 - k1*(-L1 + x1) + t0
-    t2=-b2*y2 - t0
+    t0=k2*(-L2 - x1 + x3)
+    t1=-b1*x3 - k1*(-L1 + x1) + t0
+    t2=-b2*x4 - t0
 
     # The ODE system
-    dot_x=[y1,
-    y2,
+    dot_x=[x2,
     t1/m1,
+    x4,
     t2/m2,
     0,
-    0,
     -t1/m1**2,
+    0,
     0,
     0,
     0,
@@ -27,6 +27,10 @@ def r1(w, t):
     -t2/m2**2]
     
     return dot_x
+
+
+
+
 
 # the numerical values for this example come from 
 # http://wiki.scipy.org/Cookbook/CoupledSpringMassSystem
@@ -48,9 +52,9 @@ b2 = 0.5
 # Initial conditions
 # x1 and x2 are the initial displacements; y1 and y2 are the initial velocities
 x1 = 0.5
-y1 = 0.0
-x2 = 2.25
-y2 = 0.0
+x2 = 0.0
+x3 = 2.25
+x4 = 0.0
 
 # ODE solver parameters
 abserr = 1.0e-8
@@ -64,11 +68,20 @@ numpoints = 250
 t = [stoptime * float(i) / (numpoints - 1) for i in range(numpoints)]
 
 # Pack up the parameters and initial conditions:
-p = [m1, m2, k1, k2, L1, L2, b1, b2]
+# p = [m1, m2, k1, k2, L1, L2, b1, b2]
 w0 = [0.0]*(4+2*4-1) 
-w0[0:3] = [x1, y1, x2, y2]
+w0[0:3] = [x1, x2, x3, x4]
 
 wsol = odeint(r1, w0, t, atol=abserr, rtol=relerr)
+
+# now do some ploting
+import matplotlib.pyplot as plt
+
+plt.ion()
+plt.figure(1)
+plt.hold(True)
+plt.plot(t, wsol[:,0])
+plt.plot(t, wsol[:,2])
 
 
 
