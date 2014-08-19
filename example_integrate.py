@@ -9,7 +9,7 @@ def r1(w, t):
 
     # Now the common terms
     t0=k2*(-L2 - x1 + x3)
-    t1=-b1*x3 - k1*(-L1 + x1) + t0
+    t1=-b1*x2 - k1*(-L1 + x1) + t0
     t2=-b2*x4 - t0
 
     # The ODE system
@@ -27,6 +27,8 @@ def r1(w, t):
     -t2/m2**2]
     
     return dot_x
+
+
 
 
 
@@ -83,5 +85,8 @@ plt.hold(True)
 plt.plot(t, wsol[:,0])
 plt.plot(t, wsol[:,2])
 
-
+plt.figure(12)
+plt.hold(True)
+plt.plot(t, wsol[:,5])
+plt.plot(t, wsol[:,11])
 

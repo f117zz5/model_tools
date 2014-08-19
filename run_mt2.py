@@ -9,8 +9,8 @@ mt = reload(mt)
 
 a1 = mt.ang()
 
-a1.eq_add('delta_L_1', 'x1-L_1')
-a1.eq_add('delta_L_2', 'x3-L_2')
+a1.eq_add('delta_L_1', 'x1-L1')
+a1.eq_add('delta_L_2', 'x3-L2')
 
 # coordinate transformation:
 # x_1 -> x1
@@ -18,9 +18,9 @@ a1.eq_add('delta_L_2', 'x3-L_2')
 # x_2 -> x3
 # y_2 -> x4
 a1.ode_eq_add('dot_x1', 'x2')
-a1.ode_eq_add('dot_x2', '(-b1 * x3 - k1 * (x1 - L1) + k2 * (x3 - x1 - L2)) / m1')
+a1.ode_eq_add('dot_x2', '(-b1 * x2 - k1 * delta_L_1 + k2 * (delta_L_2 - x1)) / m1')
 a1.ode_eq_add('dot_x3', 'x4')
-a1.ode_eq_add('dot_x4', '(-b2 * x4 - k2 * (x3 - x1 - L2)) / m2')
+a1.ode_eq_add('dot_x4', '(-b2 * x4 - k2 * (delta_L_2 - x1)) / m2')
 
 # substitute the algabrain equations in the ode system to generate the complete ode_subs
 a1.gen_ode_subs()
