@@ -255,7 +255,7 @@ class ang(object):
         ns = len(sys_optim[1])
 
         print '#----------'
-        print 'def %s(w, t):' % (func_name)
+        print 'def %s(w, t, p):' % (func_name)
         print '    # Automatically generated function\n'
         print '    # The state vector'
         prtStr='    ('
@@ -266,6 +266,15 @@ class ang(object):
                 prtStr='%sx%d' % (prtStr, ii+1)
         prtStr='%s)=w ' % (prtStr)
 
+        print prtStr
+
+        # print the parameters
+        prtStr='    ('
+        curr_list = self.all_params['ode_subs']
+        for ce in curr_list[:-1]:
+            prtStr = '%s%s, ' % (prtStr, ce)
+        prtStr = '%s%s) = p' % (prtStr, curr_list[-1])
+        print '    # The parameters'
         print prtStr
 
         print '\n    # Now the common terms'
