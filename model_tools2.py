@@ -161,6 +161,23 @@ class ang(object):
         # sort the list of variables names
         self.all_params[Zone].sort()
 
+        if Zone in ['ode', 'ode_subs']:
+            # remove the states from the parameter list
+            a2 = self.eq[Zone].keys()
+            a2.sort()
+
+            prefix_ode = 'dot_'
+            
+            for current_dot in a2:
+                state = current_dot.replace(prefix_ode, '')
+                if state in self.all_params[Zone]:
+                    self.all_params[Zone].remove(state)
+
+                
+
+
+
+
     # It seems the method remove_states has not been finished and right now
     # after months not working on this project I have no idea what it should do...
     # def remove_states(self, Zone = 'algebraic'):
