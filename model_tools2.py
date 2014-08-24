@@ -291,7 +291,28 @@ class ang(object):
                 print '    %s]' % current_eq
         print '    '
         print '    return dot_x'
-
+    def lie_der(h_func, f_vec, sys_states):
+        """
+        Calculation of a Lie derivative of a function h_func
+        along a vector field f_vec with respect to the system states 
+        sys_vars
+        
+        h_func      : 1x1 function of sys_states
+        f_fec       : 1xn vector field of sys_states
+            along which the derivative will be evaluated
+        sys_states  : n system states
+        """
+        
+        number_of_states=len(sys_states)
+        # here we create a temp vector that will hold the derivatives of h_func
+        # with respect to sys_states
+        vec_temp=Matrix(1, number_of_states, number_of_states*[0.0])
+        
+        for ii in range(len(sys_states)):
+            vec_temp[ii]=h_func.diff(sys_states[ii])
+            
+        Lfh=vec_temp.multiply(f_vec)[0]
+        return Lfh
 def main():
     pass
 
