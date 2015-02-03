@@ -28,6 +28,8 @@ class ang(object):
         self.all_params['ode_subs'] = list()
         self.all_params_ode_subs = dict()
 
+        self.states = list()
+
     # def find_param_to_subs(self, params_to_search, equation):
     #     #eqns = set(eqns_list.keys())
     #     b1 = list(equation.free_symbols)
@@ -134,6 +136,24 @@ class ang(object):
             self.eq[Zone].pop(Name, None)
             self.params[Zone].pop(Name, None)
             
+
+    def get_state_vector(self):
+
+        # ToDO: check if the ode_subs structure exists
+        a2 = self.eq['ode_subs'].keys()
+        a2.sort()
+
+        prefix_ode = 'dot_'
+        
+        for current_dot in a2:
+            state = current_dot.replace(prefix_ode, '')
+
+            # check if the current found state is a part of the all_params_ode_subs list
+            # and if the case -> add the Symbol variable to the state list
+            if self.all_params_ode_subs.has_key(state):
+                self.states.append(self.all_params_ode_subs[state])
+                print "adding %s" % (state)
+        
     def eq_all_params(self, Zone = 'algebraic'):
         # This function gets all the params from all the equations
 
